@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import bg from "../assets/bg.png";
 
 export default function EndScreen() {
   const navigate = useNavigate();
@@ -6,16 +7,25 @@ export default function EndScreen() {
   const { score, highScore } = state || { score: 0, highScore: 0 };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900 text-white font-pixel text-center">
-      <h1 className="text-4xl mb-4">🎉 Game Over 🎉</h1>
-      <p className="text-2xl">Your Score: {score}</p>
-      <p className="text-xl text-pink-400 mt-2">High Score: {highScore}</p>
-      <button
-        onClick={() => navigate("/")}
-        className="mt-8 bg-pink-600 px-6 py-3 rounded hover:bg-pink-700"
+    <div
+      className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      {/* inner screen */}
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-white text-center"
+        style={{ top: "60px", width: "804px", height: "493px" }}
       >
-        Play Again
-      </button>
+        <h1 className="text-xl mb-4">🎉 Game Over 🎉</h1>
+        <p className="text-lg">Your Score: {score}</p>
+        <p className="text-pink-400 mt-2 text-sm">High Score: {highScore}</p>
+        <button
+          onClick={() => navigate("/")}
+          className="mt-6 bg-pink-600 px-4 py-2 rounded hover:bg-pink-700 text-sm"
+        >
+          Play Again
+        </button>
+      </div>
     </div>
   );
 }

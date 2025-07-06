@@ -1,17 +1,29 @@
 import { useNavigate } from "react-router-dom";
+import bg from "../assets/bg.png";
 
 export default function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-purple-900 to-indigo-900 text-white font-pixel text-center">
-      <h1 className="text-4xl mb-10">🎮 Mina’s Claw Machine 🎮</h1>
-      <button
-        onClick={() => navigate("/game")}
-        className="bg-pink-600 px-8 py-4 rounded hover:bg-pink-700 transition"
+    <div
+      className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      {/* Screen area inside the frame */}
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2"
+        style={{ top: "60px", width: "804px", height: "493px" }}
       >
-        Start Game
-      </button>
+        <div className="flex flex-col items-center justify-center w-full h-full text-white text-center">
+          <h1 className="text-xl mb-6">🎮 Mina’s Claw Machine 🎮</h1>
+          <button
+            onClick={() => navigate("/game")}
+            className="bg-pink-600 px-4 py-2 rounded hover:bg-pink-700 transition text-sm"
+          >
+            Start Game
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
