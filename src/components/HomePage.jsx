@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
+import WindowControls from "../components/WindowControls";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ export default function HomePage() {
       className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel"
       style={{ backgroundImage: `url(${bg})` }}
     >
+      <WindowControls></WindowControls>
       {/* Screen area inside the frame */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2"

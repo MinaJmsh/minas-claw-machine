@@ -1,24 +1,44 @@
-const { app, BrowserWindow } = require("electron");
+// /public/electron.js
+const path = require("path");
+const { app, BrowserWindow, ipcMain } = require("electron");
+
+let mainWindow; // keep a global reference
 
 function createWindow() {
-  const win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 852,
     height: 573,
+    frame: false, // remove native title bar
+    transparent: false,
+    resizable: false,
+    fullscreenable: false,
+    titleBarStyle: "hidden",
     webPreferences: {
-      contextIsolation: true,
+      contextIsolation: true, // <‑‑ secure
+      preload: path.join(__dirname, "preload.js"), // <‑‑ same folder
     },
-    frame: false, // ❌ No window frame
-    transparent: false, // You can set true if you want full transparency
-    resizable: false, // Optional: disable resizing
-    fullscreenable: false, // Optional
-    titleBarStyle: "hidden", // Optional for macOS
   });
 
-  // Load React dev server
-  win.loadURL("http://localhost:3000");
+  /* ------------------ load the correct URL ------------------ */
+  if (!app.isPackaged) {
+    // Development: React dev‑server must be running
+    mainWindow.loadURL("http://localhost:3000");
+  } else {
+    // Production: after `npm run build`
+    mainWindow.loadFile(path.join(__dirname, "..", "build", "index.html"));
+  }
 }
 
+/* ------------------ window‑control IPC ------------------ */
+ipcMain.on("window:minimize", () => mainWindow?.minimize());
+ipcMain.on("window:close", () => mainWindow?.close());
+
+/* ------------------ life‑cycle boilerplate ------------------ */
 app.whenReady().then(createWindow);
+
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
