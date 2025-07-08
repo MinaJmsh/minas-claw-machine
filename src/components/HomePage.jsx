@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
+import bgVideo from "../assets/live-bg.mp4";
+
 import WindowControls from "../components/WindowControls";
 
 export default function HomePage() {
@@ -13,10 +15,21 @@ export default function HomePage() {
       <WindowControls></WindowControls>
       {/* Screen area inside the frame */}
       <div
-        className="absolute left-1/2 transform -translate-x-1/2"
+        className="absolute left-1/2 transform -translate-x-1/2 overflow-hidden"
         style={{ top: "60px", width: "804px", height: "493px" }}
       >
-        <div className="flex flex-col items-center justify-center w-full h-full text-white text-center">
+        {/* 🎥 Video background */}
+        <video
+          src={bgVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        />
+
+        {/* Content on top */}
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-white text-center">
           <h1 className="text-xl mb-6">🎮 Mina’s Claw Machine 🎮</h1>
           <button
             onClick={() => navigate("/game")}

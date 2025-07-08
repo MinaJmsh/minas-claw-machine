@@ -185,11 +185,11 @@ export default function Game() {
                   : minaIdle
               }
               alt="Mina"
-              className={`w-20 h-20 transition-transform ${
+              className={`w-32 h-32 transition-transform ${
                 minaEmotion === "happy"
                   ? "scale-110"
                   : minaEmotion === "sad"
-                  ? "grayscale opacity-70"
+                  ? ""
                   : ""
               }`}
             />
