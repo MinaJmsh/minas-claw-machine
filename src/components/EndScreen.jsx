@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
+import WindowControls from "./WindowControls";
 
 export default function EndScreen() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export default function EndScreen() {
       className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel"
       style={{ backgroundImage: `url(${bg})` }}
     >
+      <WindowControls></WindowControls>
       {/* inner screen */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center text-white text-center"

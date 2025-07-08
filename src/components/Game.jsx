@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { items as allItems } from "../utils/itemsData";
-import mina from "../assets/sprites/mina.png";
+import minaIdle from "../assets/sprites/mina.png";
+import minaHappy from "../assets/sprites/mina-happy.png";
+import minaCry from "../assets/sprites/mina-cry.png";
+
 import claw from "../assets/sprites/claw.png";
 import bg from "../assets/bg.png";
+import WindowControls from "./WindowControls";
 
 const CELL = 42;
 const GAP = 6;
@@ -91,6 +95,7 @@ export default function Game() {
       className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel"
       style={{ backgroundImage: `url(${bg})` }}
     >
+      <WindowControls></WindowControls>
       {/* Play area inside frame */}
       <div className="absolute top-[60px] left-1/2 transform -translate-x-1/2 w-[804px] h-[493px] flex flex-col items-center">
         {/* HUD */}
@@ -172,7 +177,13 @@ export default function Game() {
             }}
           >
             <img
-              src={mina}
+              src={
+                minaEmotion === "happy"
+                  ? minaHappy
+                  : minaEmotion === "sad"
+                  ? minaCry
+                  : minaIdle
+              }
               alt="Mina"
               className={`w-20 h-20 transition-transform ${
                 minaEmotion === "happy"
