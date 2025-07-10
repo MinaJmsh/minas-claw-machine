@@ -13,7 +13,7 @@ const CELL = 42;
 const GAP = 6;
 const MAX_ROWS = 4;
 const COLS = 5;
-const GAME_TIME = 30;
+const GAME_TIME = 10;
 
 // Generate 5 columns with 1–4 random items each
 function generateGrid() {

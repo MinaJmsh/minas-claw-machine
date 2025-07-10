@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        pixel: ['"Press Start 2P"', "monospace"],
+        pixel: ['"Pixelify Sans"', "monospace"],
       },
     },
   },
