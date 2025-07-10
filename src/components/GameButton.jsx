@@ -1,7 +1,7 @@
 import { useState } from "react";
-import btn0 from "../assets/buttons/btn-0.png";
-import btn1 from "../assets/buttons/btn-1.png";
-import btn2 from "../assets/buttons/btn-2.png";
+import btn0 from "../assets/buttons/btn2-0.png";
+import btn1 from "../assets/buttons/btn2-1.png";
+import btn2 from "../assets/buttons/btn2-2.png";
 
 export default function GameButton({
   label,
@@ -13,7 +13,7 @@ export default function GameButton({
 
   const getLabelClass = () =>
     `absolute inset-0 flex items-center justify-center text-white text-2xl ${
-      btnState === btn2 ? "translate-y-[-3px]" : "-translate-y-[10px]"
+      btnState === btn2 ? "translate-y-[-7px]" : "-translate-y-[14px]"
     }`;
 
   return (

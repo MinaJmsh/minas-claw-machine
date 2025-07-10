@@ -3,7 +3,7 @@ import { useState } from "react";
 import bg from "../assets/bg.png";
 import bgVideo from "../assets/live-bg-reverse.mp4";
 import GameButton from "./GameButton";
-
+import ToggleButton from "./ToggleButton";
 import WindowControls from "../components/WindowControls";
 
 export default function HomePage() {
@@ -37,18 +37,26 @@ export default function HomePage() {
             alt="Mina’s Claw Machine"
             className="mb-6 w-auto h-[100px]" // Adjust height as needed
           />{" "}
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-3">
             <GameButton
-              label="PLAY"
+              label="START"
               width={200}
               height={60}
               // onClick={() => navigate("/game")}
             />
+            <GameButton label="HOW TO PLAY" width={200} height={60} />
             <GameButton
               label="QUIT"
               width={200}
               height={60}
               // onClick={() => window.electron?.close?.()}
+            />
+          </div>
+          {/* 🔊 Toggle Button in Bottom Left */}
+          <div className="absolute bottom-2 left-2 z-20">
+            <span>music</span>
+            <ToggleButton
+            // onToggle={(isOn) => setSoundOn(isOn)}
             />
           </div>
         </div>
