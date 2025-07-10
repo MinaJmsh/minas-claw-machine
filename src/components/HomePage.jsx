@@ -2,12 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import bg from "../assets/bg.png";
 import bgVideo from "../assets/live-bg-reverse.mp4";
+import info from "../assets/info.png";
 import GameButton from "./GameButton";
+import SquareGameButton from "./SquareGameButton";
 import ToggleButton from "./ToggleButton";
 import WindowControls from "../components/WindowControls";
+import HowToPlayModal from "./HowToPlayModal";
+import InfoModal from "./InfoModal";
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   return (
     <div
@@ -15,6 +21,11 @@ export default function HomePage() {
       style={{ backgroundImage: `url(${bg})` }}
     >
       <WindowControls></WindowControls>
+      {showHowToPlay && (
+        <HowToPlayModal onClose={() => setShowHowToPlay(false)} />
+      )}
+      {showInfo && <InfoModal onClose={() => setShowInfo(false)} />}
+
       {/* Screen area inside the frame */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 overflow-hidden"
@@ -42,14 +53,20 @@ export default function HomePage() {
               label="START"
               width={200}
               height={60}
-              // onClick={() => navigate("/game")}
+              onClick={() => navigate("/game")}
             />
-            <GameButton label="HOW TO PLAY" width={200} height={60} />
+            <GameButton
+              label="HOW TO PLAY"
+              width={200}
+              height={60}
+              onClick={() => setShowHowToPlay(true)}
+            />
+
             <GameButton
               label="QUIT"
               width={200}
               height={60}
-              // onClick={() => window.electron?.close?.()}
+              onClick={() => window.electron?.close?.()}
             />
           </div>
           {/* 🔊 Toggle Button in Bottom Left */}
@@ -57,6 +74,14 @@ export default function HomePage() {
             <span>music</span>
             <ToggleButton
             // onToggle={(isOn) => setSoundOn(isOn)}
+            />
+          </div>
+          <div className="absolute bottom-2 right-2 z-20">
+            <SquareGameButton
+              width={60}
+              height={60}
+              labelImg={info}
+              onClick={() => setShowInfo(true)}
             />
           </div>
         </div>
