@@ -1,39 +1,34 @@
-// /public/electron.js
 const path = require("path");
 const { app, BrowserWindow, ipcMain } = require("electron");
 
-let mainWindow; // keep a global reference
+let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 852,
     height: 573,
-    frame: false, // remove native title bar
+    frame: false,
     transparent: false,
     resizable: false,
     fullscreenable: false,
     titleBarStyle: "hidden",
+    icon: path.join(__dirname, "icons", "app-icon.ico"), // ✅ Add this line
     webPreferences: {
-      contextIsolation: true, // <‑‑ secure
-      preload: path.join(__dirname, "preload.js"), // <‑‑ same folder
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
-  /* ------------------ load the correct URL ------------------ */
   if (!app.isPackaged) {
-    // Development: React dev‑server must be running
     mainWindow.loadURL("http://localhost:3000");
   } else {
-    // Production: after `npm run build`
     mainWindow.loadFile(path.join(__dirname, "..", "build", "index.html"));
   }
 }
 
-/* ------------------ window‑control IPC ------------------ */
 ipcMain.on("window:minimize", () => mainWindow?.minimize());
 ipcMain.on("window:close", () => mainWindow?.close());
 
-/* ------------------ life‑cycle boilerplate ------------------ */
 app.whenReady().then(createWindow);
 
 app.on("activate", () => {
