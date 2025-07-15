@@ -10,12 +10,12 @@ import bg from "../assets/bg.png";
 import WindowControls from "./WindowControls";
 
 // 🧮 Constants
-const CELL = 60;
 const MAX_ROWS = 3;
 const COLS = 7;
 const GAME_TIME = 600;
 const GLASS_WIDTH = 400;
 const GLASS_HEIGHT = 265;
+const CELL = GLASS_WIDTH / COLS;
 
 function generateGrid() {
   const grid = [];
@@ -82,8 +82,13 @@ export default function Game() {
   const translateX = clawCol * CELL;
   const targetCol = grid[clawCol];
 
-  const clawDropDepth =
-    isGrabbing && targetCol ? (MAX_ROWS - targetCol.length) * CELL : 0;
+  const clawDropDepth = isGrabbing
+    ? targetCol?.length
+      ? (MAX_ROWS - targetCol.length) * CELL +
+        (GLASS_HEIGHT - (MAX_ROWS + 1) * CELL) +
+        CELL * 0.5
+      : GLASS_HEIGHT - CELL
+    : 0;
 
   return (
     <div
@@ -98,12 +103,14 @@ export default function Game() {
           <span>Time: {timeLeft}s</span>
           <span>Score: {score}</span>
         </div>
-        {/* Render claw machine image */}
+
+        {/* Claw machine image */}
         <img
           src={machine}
           alt="machine"
           className="absolute top-0 left-1/2 transform -translate-x-1/2 h-full object-contain pointer-events-none z-20"
         />
+
         {/* Play area inside the glass of the claw machine */}
         <div
           className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10"
@@ -142,8 +149,8 @@ export default function Game() {
                       key={item.id}
                       className="rounded border border-pink-600 flex items-center justify-center"
                       style={{
-                        width: "100%", // fill parent width
-                        aspectRatio: "1 / 1", // square cells
+                        width: "100%",
+                        aspectRatio: "1 / 1",
                       }}
                     >
                       <img src={item.img} alt={item.name} className="w-9 h-9" />
@@ -151,7 +158,6 @@ export default function Game() {
                   ) : (
                     <div
                       key={`empty-${rowIndex}`}
-                      // className="bg-gray-900 rounded border border-gray-700"
                       style={{
                         width: "100%",
                         aspectRatio: "1 / 1",
@@ -163,8 +169,9 @@ export default function Game() {
             ))}
           </div>
         </div>
-        {/*  Controls  */}
-        <div className="flex justify-center gap-4 mt-6 z-50 ">
+
+        {/* Controls */}
+        <div className="flex justify-center gap-4 mt-6 z-50">
           <button
             onClick={moveLeft}
             disabled={isGrabbing}
@@ -187,31 +194,30 @@ export default function Game() {
             Right
           </button>
         </div>
+
+        {/* Mina beside machine at bottom right */}
+        <div
+          className="absolute z-30"
+          style={{
+            bottom: "-12px",
+            left: "calc(50% + 210px)",
+          }}
+        >
+          <img
+            src={
+              minaEmotion === "happy"
+                ? minaHappy
+                : minaEmotion === "sad"
+                ? minaCry
+                : minaIdle
+            }
+            alt="Mina"
+            className={`w-32 h-32 transition-transform ${
+              minaEmotion === "happy" ? "scale-110" : ""
+            }`}
+          />
+        </div>
       </div>
     </div>
   );
 }
-
-/* 
-            Mina beside machine
-            <div
-              className="absolute"
-              style={{
-                left: `calc(50% + ${((CELL + GAP) * COLS + 8) / 2 + 16}px)`,
-                top: "30%",
-              }}
-            >
-              <img
-                src={
-                  minaEmotion === "happy"
-                    ? minaHappy
-                    : minaEmotion === "sad"
-                    ? minaCry
-                    : minaIdle
-                }
-                alt="Mina"
-                className={`w-32 h-32 transition-transform ${
-                  minaEmotion === "happy" ? "scale-110" : ""
-                }`}
-              />
-            </div> */
