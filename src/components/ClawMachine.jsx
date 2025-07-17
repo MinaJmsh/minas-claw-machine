@@ -1,6 +1,7 @@
 import claw from "../assets/sprites/claw.png";
-import machine from "../assets/machine.png";
+import machine from "../assets/machine3.png";
 import Controls from "./Controls"; // ✅ import it
+import { useEffect, useState } from "react";
 
 export default function ClawMachine({
   grid,
@@ -15,6 +16,27 @@ export default function ClawMachine({
   moveRight,
   grab,
 }) {
+  // در داخل کامپوننت ClawMachine
+  const [animatedItems, setAnimatedItems] = useState({});
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newStates = {};
+
+      grid.forEach((column) => {
+        column.forEach((item) => {
+          if (!item) return;
+          // ۵۰٪ احتمال برای انیمیشن داشتن یا نداشتن
+          newStates[item.id] = Math.random() < 0.5;
+        });
+      });
+
+      setAnimatedItems(newStates);
+    }, 500); // هر ۱.۵ ثانیه به‌روزرسانی
+
+    return () => clearInterval(interval);
+  }, [grid]);
+
   const translateX = clawCol * CELL;
 
   return (
@@ -36,16 +58,17 @@ export default function ClawMachine({
         }}
       >
         {/* 🔳 Semi-transparent dark overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-50 z-10" />
+        <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-30 z-10" />
         {/* Claw */}
         <div
-          className="absolute z-10 transition-transform duration-500 z-50"
+          className="absolute z-10 z-50"
           style={{
             left: `${translateX}px`,
             top: 0,
             width: CELL,
             height: CELL,
             transform: `translateY(${clawDropDepth}px)`,
+            transition: "left 0.3s ease-in-out, transform 0.5s ease",
           }}
         >
           <img src={claw} alt="claw" className="w-full h-full" />
@@ -64,13 +87,22 @@ export default function ClawMachine({
                 return item ? (
                   <div
                     key={item.id}
-                    className="rounded border border-pink-600 flex items-center justify-center"
+                    className=" flex items-center justify-center"
                     style={{
                       width: "100%",
                       aspectRatio: "1 / 1",
                     }}
                   >
-                    <img src={item.img} alt={item.name} className="w-9 h-9" />
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="w-full h-full transition-transform duration-300 ease-in-out"
+                      style={{
+                        transform: animatedItems[item.id]
+                          ? "rotate(5deg) translateY(-2px)"
+                          : "rotate(0deg) translateY(0)",
+                      }}
+                    />
                   </div>
                 ) : (
                   <div
