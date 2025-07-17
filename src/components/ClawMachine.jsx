@@ -35,9 +35,11 @@ export default function ClawMachine({
           height: `${GLASS_HEIGHT}px`,
         }}
       >
+        {/* 🔳 Semi-transparent dark overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-50 z-10" />
         {/* Claw */}
         <div
-          className="absolute z-10 transition-transform duration-500"
+          className="absolute z-10 transition-transform duration-500 z-50"
           style={{
             left: `${translateX}px`,
             top: 0,
@@ -50,7 +52,7 @@ export default function ClawMachine({
         </div>
 
         {/* Grid */}
-        <div className="absolute bottom-0 left-0 flex items-end w-full">
+        <div className="absolute bottom-0 left-0 flex items-end w-full z-50">
           {grid.map((column, colIndex) => (
             <div
               key={colIndex}

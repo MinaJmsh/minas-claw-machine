@@ -29,7 +29,7 @@ export default function HomePage() {
       {/* Screen area inside the frame */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 overflow-hidden"
-        style={{ top: "60px", width: "804px", height: "493px" }}
+        style={{ top: "53px", width: "804px", height: "490px" }}
       >
         {/* 🎥 Video background */}
         <video
