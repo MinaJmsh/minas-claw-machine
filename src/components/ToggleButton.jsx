@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toggleOn from "../assets/buttons/toggle-on.png";
 import toggleOff from "../assets/buttons/toggle-off.png";
+import { useAudio } from "./AudioProvider"; // 👈 import audio context
 
-export default function ToggleButton({ onToggle }) {
-  const [isOn, setIsOn] = useState(true);
+export default function ToggleButton() {
+  const { isPlaying, toggleAudio } = useAudio();
+  const [isOn, setIsOn] = useState(isPlaying);
+
+  useEffect(() => {
+    setIsOn(isPlaying);
+  }, [isPlaying]);
 
   const toggle = () => {
-    const newState = !isOn;
-    setIsOn(newState);
-    onToggle?.(newState);
-    console.log("Sound toggled:", newState);
+    toggleAudio();
   };
 
   return (

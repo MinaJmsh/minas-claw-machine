@@ -22,3 +22,10 @@ label,
 .clickable {
   cursor: url("assets/cursors/hand.png"), pointer;
 }
+/* index.css */
+.drag-area {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}

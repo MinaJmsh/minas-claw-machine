@@ -20,7 +20,10 @@ export default function HomePage() {
       className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel text-2xl"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      <WindowControls></WindowControls>
+      {/* <div className="absolute top-0 left-0 w-[750px] h-[53px] drag-area z-50">
+      </div> */}
+
+      <WindowControls />
       {showHowToPlay && (
         <HowToPlayModal onClose={() => setShowHowToPlay(false)} />
       )}

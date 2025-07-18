@@ -9,7 +9,7 @@ import Characters from "./Characters";
 
 // 🧮 Constants
 const MAX_ROWS = 3;
-const COLS = 7;
+const COLS = 6;
 const GAME_TIME = 10;
 const GLASS_WIDTH = 370;
 const GLASS_HEIGHT = 300;
@@ -66,6 +66,23 @@ export default function Game() {
     const t = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(t);
   }, [timeLeft, score, navigate]);
+
+  useEffect(() => {
+    if (isGridEmpty(grid)) {
+      setTimeout(() => {
+        const currentHighScore = getHighScore();
+        if (score > currentHighScore || currentHighScore === -Infinity) {
+          setHighScore(score);
+        }
+        navigate("/end", { state: { score } });
+      }, 2000); // زمان هماهنگ با انیمیشن بالا رفتن claw
+    }
+  }, [grid, score, navigate]);
+
+  const isGridEmpty = (grid) => {
+    return grid.every((col) => col.length === 0);
+  };
+
   const moveLeft = () =>
     !isGrabbing && setClawCol((c) => (c === 0 ? COLS - 1 : c - 1));
   const moveRight = () =>

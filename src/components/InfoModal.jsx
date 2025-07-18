@@ -20,7 +20,7 @@ export default function InfoModal({ onClose }) {
             had fun making it, and I hope you have fun playing it. It’s probably
             not the most impressive game ever, but I’ve put time and attention
             into every part of it — the layout, the buttons and every thing —
-            because it felt nice to make something when it's for you. Thank you
+            because it feels nice to make something when it's for you. Thank you
             for always supporting me.
             <br />I Love you so much.
             <br />
