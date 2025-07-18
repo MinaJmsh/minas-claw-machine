@@ -8,16 +8,16 @@ export default function Controls({ moveLeft, moveRight, grab, isGrabbing }) {
   return (
     <div
       className="absolute left-1/2 transform -translate-x-1/2 flex gap-4 z-30"
-      style={{ top: "380px" }}
+      style={{ top: "400px" }}
     >
       <SquareGameButton
         onClick={moveLeft}
         labelImg={leftArrow}
-        width={64}
-        height={64}
+        width={60}
+        height={60}
       />
 
-      <RoundGameButton onClick={grab} size={70} />
+      <RoundGameButton onClick={grab} size={65} />
 
       <SquareGameButton
         onClick={moveRight}

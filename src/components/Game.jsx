@@ -11,8 +11,8 @@ import Characters from "./Characters";
 const MAX_ROWS = 3;
 const COLS = 7;
 const GAME_TIME = 500;
-const GLASS_WIDTH = 410;
-const GLASS_HEIGHT = 265;
+const GLASS_WIDTH = 365;
+const GLASS_HEIGHT = 295;
 const CELL = GLASS_WIDTH / COLS;
 
 function generateGrid() {
@@ -37,6 +37,7 @@ export default function Game() {
   const [minaEmotion, setMinaEmotion] = useState("idle");
   const [timeLeft, setTimeLeft] = useState(GAME_TIME);
   const [isGrabbing, setIsGrabbing] = useState(false);
+  const [scoreMessage, setScoreMessage] = useState("");
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -71,6 +72,17 @@ export default function Game() {
 
         setScore((s) => s + grabbed.value);
         setMinaEmotion(grabbed.value > 0 ? "happy" : "sad");
+
+        // تنظیم پیام نمره
+        setScoreMessage(
+          grabbed.value > 0
+            ? `You scored ${grabbed.value} points!`
+            : `You lost ${Math.abs(grabbed.value)} points!`
+        );
+
+        // پاک کردن پیام بعد از ۲ ثانیه
+        setTimeout(() => setScoreMessage(""), 2000);
+
         setTimeout(() => setMinaEmotion("idle"), 1200);
       }
       setIsGrabbing(false);
@@ -133,6 +145,7 @@ export default function Game() {
             moveLeft={moveLeft}
             moveRight={moveRight}
             grab={grab}
+            scoreMessage={scoreMessage}
           />
 
           {/* Use Characters component here */}

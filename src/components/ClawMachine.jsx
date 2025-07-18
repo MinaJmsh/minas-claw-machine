@@ -1,5 +1,6 @@
-import claw from "../assets/sprites/claw.png";
-import machine from "../assets/machine3.png";
+import claw from "../assets/sprites/claw33.png";
+import cable from "../assets/sprites/cable.png";
+import machine from "../assets/machine.png";
 import Controls from "./Controls"; // ✅ import it
 import { useEffect, useState } from "react";
 
@@ -15,9 +16,23 @@ export default function ClawMachine({
   moveLeft,
   moveRight,
   grab,
+  scoreMessage,
 }) {
   // در داخل کامپوننت ClawMachine
   const [animatedItems, setAnimatedItems] = useState({});
+  const [rotateDirection, setRotateDirection] = useState(true);
+
+  useEffect(() => {
+    if (clawDropDepth === 0 && !isGrabbing) {
+      const interval = setInterval(() => {
+        setRotateDirection((d) => !d);
+      }, 1000); // هر ۱ ثانیه تغییر جهت چرخش
+
+      return () => clearInterval(interval);
+    } else {
+      setRotateDirection(true); // reset rotation state when moving
+    }
+  }, [clawDropDepth, isGrabbing]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -48,30 +63,80 @@ export default function ClawMachine({
         className="absolute top-0 left-1/2 transform -translate-x-1/2 h-full object-contain pointer-events-none z-20"
       />
 
+      {/* Score message box inside ClawMachine */}
+      <div
+        className="absolute left-1/2 transform -translate-x-1/2 z-50 flex items-center justify-center px-4 py-2"
+        style={{
+          backgroundColor: "#f9cce0",
+          minWidth: "250px",
+          height: "35px",
+          top: "10px",
+          color: "#1d192b",
+          borderRadius: "6px",
+        }}
+      >
+        {scoreMessage ? (
+          <span className="text-center font-bold animate-blink text-xl">
+            {scoreMessage}
+          </span>
+        ) : (
+          <span className="text-center font-bold text-xl invisible">
+            &nbsp;
+          </span>
+        )}
+      </div>
       {/* Play area inside the glass of the claw machine */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10"
         style={{
-          top: "65px",
+          top: "90px",
           width: `${GLASS_WIDTH}px`,
           height: `${GLASS_HEIGHT}px`,
         }}
       >
         {/* 🔳 Semi-transparent dark overlay */}
         <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-30 z-10" />
-        {/* Claw */}
+
+        {/* Claw (fixed cable + moving claw head) */}
         <div
-          className="absolute z-10 z-50"
+          className="absolute z-50"
           style={{
             left: `${translateX}px`,
             top: 0,
             width: CELL,
-            height: CELL,
-            transform: `translateY(${clawDropDepth}px)`,
-            transition: "left 0.3s ease-in-out, transform 0.5s ease",
+            transition: "left 0.3s ease-in-out", // ✅ smooth horizontal movement
           }}
         >
-          <img src={claw} alt="claw" className="w-full h-full" />
+          {/* Cable - stretches from top */}
+          <div
+            style={{
+              width: "100%",
+              height: `${Math.max(0, clawDropDepth)}px`,
+              backgroundImage: `url(${cable})`,
+              backgroundRepeat: "repeat-y",
+              backgroundPosition: "top center",
+              backgroundSize: "100% auto",
+              transition: "height 0.5s ease", // ✅ smooth cable stretch
+            }}
+          />
+
+          {/* Claw image - drops smoothly */}
+          <img
+            src={claw}
+            alt="claw"
+            style={{
+              position: "absolute",
+              top: 0,
+              width: "100%",
+              height: `${CELL}px`,
+              transformOrigin: "top center",
+              transition: "transform 0.5s ease",
+              transform:
+                clawDropDepth === 0 && !isGrabbing
+                  ? `rotate(${rotateDirection ? 5 : -5}deg)`
+                  : `translateY(${clawDropDepth}px) rotate(0deg)`,
+            }}
+          />
         </div>
 
         {/* Grid */}
