@@ -28,6 +28,21 @@ function generateGrid() {
   }
   return grid;
 }
+// High score access wrappers
+const getHighScore = () => {
+  const stored =
+    window.electron?.getHighScore?.() ?? localStorage.getItem("highScore");
+  const parsed = parseInt(stored, 10);
+  return isNaN(parsed) ? -Infinity : parsed;
+};
+
+const setHighScore = (score) => {
+  if (window.electron?.setHighScore) {
+    window.electron.setHighScore(score);
+  } else {
+    localStorage.setItem("highScore", score.toString());
+  }
+};
 
 export default function Game() {
   const navigate = useNavigate();
@@ -41,19 +56,16 @@ export default function Game() {
 
   useEffect(() => {
     if (timeLeft <= 0) {
-      const highScore = Math.max(
-        score,
-        parseInt(localStorage.getItem("highScore") || "0")
-      );
-      if (score > highScore)
-        localStorage.setItem("highScore", score.toString());
-      navigate("/end", { state: { score, highScore } });
+      const currentHighScore = getHighScore();
+      if (score > currentHighScore || currentHighScore === -Infinity) {
+        setHighScore(score);
+      }
+      navigate("/end", { state: { score } }); // High score will be fetched on EndScreen
       return;
     }
     const t = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(t);
   }, [timeLeft, score, navigate]);
-
   const moveLeft = () =>
     !isGrabbing && setClawCol((c) => (c === 0 ? COLS - 1 : c - 1));
   const moveRight = () =>

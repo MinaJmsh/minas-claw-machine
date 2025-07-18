@@ -7,7 +7,17 @@ import GameButton from "./GameButton"; // افزودن این
 export default function EndScreen() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { score, highScore } = state || { score: 0, highScore: 0 };
+  const { score } = state || { score: 0 };
+
+  // Use electron-store or fallback to localStorage
+  const getHighScore = () => {
+    const stored =
+      window.electron?.getHighScore?.() ?? localStorage.getItem("highScore");
+    const parsed = parseInt(stored, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  };
+
+  const highScore = getHighScore();
 
   return (
     <div
