@@ -10,9 +10,9 @@ import Characters from "./Characters";
 // 🧮 Constants
 const MAX_ROWS = 3;
 const COLS = 7;
-const GAME_TIME = 500;
-const GLASS_WIDTH = 365;
-const GLASS_HEIGHT = 295;
+const GAME_TIME = 10;
+const GLASS_WIDTH = 370;
+const GLASS_HEIGHT = 300;
 const CELL = GLASS_WIDTH / COLS;
 
 function generateGrid() {
@@ -120,12 +120,12 @@ export default function Game() {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         />
 
-        <div className="absolute  left-1/2 transform -translate-x-1/2 w-[804px] h-[480px] flex flex-col items-center z-50">
+        <div className="absolute  left-1/2 transform -translate-x-1/2 w-[804px] h-[490px] flex flex-col items-center z-50">
           {/* HUD */}
           <div
             className="flex justify-between text-2xl px-2 w-full text-white fixed"
             style={{
-              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+              textShadow: "2px 2px 2px rgba(0, 0, 0)",
             }}
           >
             <span>Time: {timeLeft}s</span>

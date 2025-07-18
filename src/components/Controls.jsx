@@ -8,7 +8,7 @@ export default function Controls({ moveLeft, moveRight, grab, isGrabbing }) {
   return (
     <div
       className="absolute left-1/2 transform -translate-x-1/2 flex gap-4 z-30"
-      style={{ top: "400px" }}
+      style={{ top: "408px" }}
     >
       <SquareGameButton
         onClick={moveLeft}

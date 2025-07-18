@@ -1,6 +1,6 @@
 import claw from "../assets/sprites/claw33.png";
 import cable from "../assets/sprites/cable.png";
-import machine from "../assets/machine.png";
+import machine from "../assets/machineeee.png";
 import Controls from "./Controls"; // ✅ import it
 import { useEffect, useState } from "react";
 
@@ -65,14 +65,12 @@ export default function ClawMachine({
 
       {/* Score message box inside ClawMachine */}
       <div
-        className="absolute left-1/2 transform -translate-x-1/2 z-50 flex items-center justify-center px-4 py-2"
+        className="absolute left-1/2 transform -translate-x-1/2 z-50 flex items-center justify-center px-4 py-2 text-white"
         style={{
-          backgroundColor: "#f9cce0",
+          backgroundColor: "#664c8a",
           minWidth: "250px",
           height: "35px",
           top: "10px",
-          color: "#1d192b",
-          borderRadius: "6px",
         }}
       >
         {scoreMessage ? (

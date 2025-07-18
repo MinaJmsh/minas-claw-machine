@@ -72,7 +72,7 @@ export default function Characters({ minaEmotion }) {
       <div
         className="absolute z-30"
         style={{
-          bottom: "0px",
+          bottom: "5px",
           left: "calc(50% + 250px)",
           transform: isJumping
             ? "translateY(-20px)"
@@ -99,7 +99,7 @@ export default function Characters({ minaEmotion }) {
       <div
         className="absolute z-30"
         style={{
-          bottom: "0px",
+          bottom: "5px",
           right: "calc(50% + 250px)",
           transform: `scaleX(-1) scale(${parsaBreathing ? 1.01 : 1})`,
           transition: "transform 0.5s ease",

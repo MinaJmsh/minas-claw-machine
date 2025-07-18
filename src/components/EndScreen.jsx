@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import bg from "../assets/bg.png";
 import WindowControls from "./WindowControls";
-import bgVideo from "../assets/live-bg-2.mp4";
+import bgVideo from "../assets/live-bg-reverse.mp4";
+import GameButton from "./GameButton"; // افزودن این
 
 export default function EndScreen() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function EndScreen() {
       style={{ backgroundImage: `url(${bg})` }}
     >
       <WindowControls />
+
       <div
         className="absolute left-1/2 transform -translate-x-1/2 overflow-hidden"
         style={{ top: "53px", width: "804px", height: "490px" }}
@@ -28,16 +30,42 @@ export default function EndScreen() {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         />
 
-        <div className="absolute  left-1/2 transform -translate-x-1/2 w-[804px] h-[480px] flex flex-col items-center z-50">
-          <h1 className="text-xl mb-4">🎉 Game Over 🎉</h1>
-          <p className="text-lg">Your Score: {score}</p>
-          <p className="text-pink-400 mt-2 text-sm">High Score: {highScore}</p>
-          <button
-            onClick={() => navigate("/")}
-            className="mt-6 bg-pink-600 px-4 py-2 rounded hover:bg-pink-700 text-sm"
+        {/* Content centered both horizontally and vertically */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[804px] flex flex-col items-center z-50">
+          <h1
+            className="text-6xl mb-4"
+            style={{
+              textShadow: "2px 2px 2px rgba(0, 0, 0)",
+            }}
           >
-            Play Again
-          </button>
+            {" "}
+            Game Over{" "}
+          </h1>
+          <p
+            className="text-2xl"
+            style={{
+              textShadow: "2px 2px 2px rgba(0, 0, 0)",
+            }}
+          >
+            Your Score: {score}
+          </p>
+          <p
+            className="text-pink-400 mt-2 text-2xl"
+            style={{
+              textShadow: "2px 2px 2px rgba(0, 0, 0)",
+            }}
+          >
+            High Score: {highScore}
+          </p>
+
+          <div className="mt-6">
+            <GameButton
+              label="go to menu"
+              onClick={() => navigate("/")}
+              width={200}
+              height={64}
+            />
+          </div>
         </div>
       </div>
     </div>
