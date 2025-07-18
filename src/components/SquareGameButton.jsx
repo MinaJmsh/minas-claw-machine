@@ -2,6 +2,7 @@ import { useState } from "react";
 import btn0 from "../assets/buttons/sqrbtn-0.png";
 import btn1 from "../assets/buttons/sqrbtn-1.png";
 import btn2 from "../assets/buttons/sqrbtn-2.png";
+import useButtonSound from "../hooks/useButtonSound"; // 🔊
 
 export default function SquareGameButton({
   labelImg, // image shown on top (e.g., icon or mini-label PNG)
@@ -10,6 +11,12 @@ export default function SquareGameButton({
   onClick,
 }) {
   const [btnState, setBtnState] = useState(btn0);
+  const playSound = useButtonSound(); // 🔊
+
+  const handleClick = () => {
+    playSound(); // 🔊
+    onClick?.();
+  };
 
   const getLabelClass = () =>
     `absolute inset-0 flex items-center justify-center ${
@@ -20,7 +27,7 @@ export default function SquareGameButton({
     <div
       className="clickable relative select-none"
       style={{ width, height }}
-      onClick={onClick}
+      onClick={handleClick} // 🔊
       onMouseEnter={() => setBtnState(btn1)}
       onMouseLeave={() => setBtnState(btn0)}
       onMouseDown={() => setBtnState(btn2)}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import rnd0 from "../assets/buttons/rndbtn-0.png";
 import rnd1 from "../assets/buttons/rndbtn-1.png";
 import rnd2 from "../assets/buttons/rndbtn-2.png";
+import usePopSound from "../hooks/usePopSound"; // 🔊
 
 export default function RoundGameButton({
   labelImg, // optional label image
@@ -9,6 +10,12 @@ export default function RoundGameButton({
   onClick,
 }) {
   const [btnState, setBtnState] = useState(rnd0);
+  const playSound = usePopSound(); // 🔊
+
+  const handleClick = () => {
+    playSound(); // 🔊
+    onClick?.();
+  };
 
   const getLabelClass = () =>
     `absolute inset-0 flex items-center justify-center ${
@@ -19,7 +26,7 @@ export default function RoundGameButton({
     <div
       className="clickable relative select-none"
       style={{ width: size, height: size }}
-      onClick={onClick}
+      onClick={handleClick} // 🔊
       onMouseEnter={() => setBtnState(rnd1)}
       onMouseLeave={() => setBtnState(rnd0)}
       onMouseDown={() => setBtnState(rnd2)}
