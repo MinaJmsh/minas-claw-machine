@@ -18,7 +18,7 @@ export default function HowToPlayModal({ onClose }) {
             Use the claw to collect Mina’s favorite items. Avoid the ones she
             dislikes. Points depend on how much she likes or dislikes each item!
           </p>
-          <GameButton label="CLOSE" width={150} height={60} onClick={onClose} />
+          <GameButton label="close" width={150} height={60} onClick={onClose} />
         </div>
       </div>
     </div>

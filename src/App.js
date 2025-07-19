@@ -7,8 +7,6 @@ import { AudioProvider } from "./components/AudioProvider"; // 👈 import
 function App() {
   return (
     <AudioProvider>
-      {" "}
-      {/* 👈 wrap in provider */}
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />

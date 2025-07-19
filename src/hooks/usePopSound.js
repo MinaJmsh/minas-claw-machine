@@ -1,10 +1,14 @@
 import { useRef } from "react";
 import clickSound from "../assets/pop.mp3";
+import { useAudio } from "../components/AudioProvider"; // 👈 import audio context
 
 export default function usePopSound() {
   const audioRef = useRef(new Audio(clickSound));
+  const { sfxEnabled } = useAudio(); // 👈 read from context
 
   const play = () => {
+    if (!sfxEnabled) return; // 🚫 skip if sound effects are disabled
+
     if (!audioRef.current.paused) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;

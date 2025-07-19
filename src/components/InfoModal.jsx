@@ -13,7 +13,7 @@ export default function InfoModal({ onClose }) {
           className="absolute left-1/2 transform -translate-x-1/2 text-white flex flex-col items-start px-6"
           style={{ top: "50px", width: "600px", height: "360px" }}
         >
-          <h2 className="text-3xl font-bold mb-4 self-center">Credits</h2>
+          <h2 className="text-3xl font-bold mb-4 self-center">credits</h2>
 
           <p className="text-base leading-relaxed mb-6 text-left whitespace-pre-line">
             This is a small game I made for you, Parsa — something simple but I
@@ -29,7 +29,7 @@ export default function InfoModal({ onClose }) {
 
           <div className="self-center">
             <GameButton
-              label="CLOSE"
+              label="close"
               width={150}
               height={60}
               onClick={onClose}

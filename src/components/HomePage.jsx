@@ -3,31 +3,32 @@ import { useState } from "react";
 import bg from "../assets/bg.png";
 import bgVideo from "../assets/live-bg-reverse.mp4";
 import info from "../assets/info.png";
+import setting from "../assets/setting.png";
 import GameButton from "./GameButton";
 import SquareGameButton from "./SquareGameButton";
 import ToggleButton from "./ToggleButton";
 import WindowControls from "../components/WindowControls";
 import HowToPlayModal from "./HowToPlayModal";
 import InfoModal from "./InfoModal";
+import Setting from "./SettingModal"; // 👈 import the Setting modal
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [showSettings, setShowSettings] = useState(false); // 👈
 
   return (
     <div
       className="w-[852px] h-[571px] mx-auto bg-no-repeat bg-center bg-contain relative font-pixel text-2xl"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      {/* <div className="absolute top-0 left-0 w-[750px] h-[53px] drag-area z-50">
-      </div> */}
-
       <WindowControls />
       {showHowToPlay && (
         <HowToPlayModal onClose={() => setShowHowToPlay(false)} />
       )}
       {showInfo && <InfoModal onClose={() => setShowInfo(false)} />}
+      {showSettings && <Setting onClose={() => setShowSettings(false)} />}
 
       {/* Screen area inside the frame */}
       <div
@@ -53,30 +54,23 @@ export default function HomePage() {
           />{" "}
           <div className="flex flex-col items-center gap-3">
             <GameButton
-              label="START"
+              label="start"
               width={200}
               height={60}
               onClick={() => navigate("/game")}
             />
             <GameButton
-              label="HOW TO PLAY"
+              label="how to play"
               width={200}
               height={60}
               onClick={() => setShowHowToPlay(true)}
             />
 
             <GameButton
-              label="QUIT"
+              label="quit"
               width={200}
               height={60}
               onClick={() => window.electron?.close?.()}
-            />
-          </div>
-          {/* 🔊 Toggle Button in Bottom Left */}
-          <div className="absolute bottom-2 left-2 z-20">
-            <span>music</span>
-            <ToggleButton
-            // onToggle={(isOn) => setSoundOn(isOn)}
             />
           </div>
           <div className="absolute bottom-2 right-2 z-20">
@@ -85,6 +79,14 @@ export default function HomePage() {
               height={60}
               labelImg={info}
               onClick={() => setShowInfo(true)}
+            />
+          </div>
+          <div className="absolute bottom-2 left-2 z-20">
+            <SquareGameButton
+              width={60}
+              height={60}
+              labelImg={setting} // 👈 replace with your settings icon
+              onClick={() => setShowSettings(true)}
             />
           </div>
         </div>

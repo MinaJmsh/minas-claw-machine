@@ -23,9 +23,12 @@ label,
   cursor: url("assets/cursors/hand.png"), pointer;
 }
 /* index.css */
+
 .drag-area {
-  -webkit-app-region: drag;
+  -webkit-app-region: drag; /* Makes it draggable */
+  cursor: url("assets/cursors/normal.png"), auto; /* 👈 Explicitly set custom cursor */
 }
+
 .no-drag {
   -webkit-app-region: no-drag;
 }
