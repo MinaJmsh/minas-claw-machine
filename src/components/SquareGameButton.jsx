@@ -40,7 +40,7 @@ export default function SquareGameButton({
       />
       {labelImg && (
         <div className={getLabelClass()}>
-          <img src={labelImg} alt="label" className="max-w-[50%] max-h-[50%]" />
+          <img src={labelImg} alt="label" className="max-w-[45%] max-h-[45%]" />
         </div>
       )}
     </div>

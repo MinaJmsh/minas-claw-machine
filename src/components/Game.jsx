@@ -6,6 +6,9 @@ import bgVideo from "../assets/live-bg-2.mp4";
 import WindowControls from "./WindowControls";
 import ClawMachine from "./ClawMachine";
 import Characters from "./Characters";
+import useScoreSound from "../hooks/useScoreSound"; // 🔊
+import useLoseSound from "../hooks/useLoseSound"; // 🔊
+import useOverSound from "../hooks/useOverSound"; // 🔊
 
 // 🧮 Constants
 const MAX_ROWS = 3;
@@ -53,6 +56,9 @@ export default function Game() {
   const [timeLeft, setTimeLeft] = useState(GAME_TIME);
   const [isGrabbing, setIsGrabbing] = useState(false);
   const [scoreMessage, setScoreMessage] = useState("");
+  const playScoreSound = useScoreSound(); // 🔊
+  const playLoseSound = useLoseSound(); // 🔊
+  const playOverSound = useOverSound(); // 🔊
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -60,6 +66,7 @@ export default function Game() {
       if (score > currentHighScore || currentHighScore === -Infinity) {
         setHighScore(score);
       }
+      playOverSound();
       navigate("/end", { state: { score } }); // High score will be fetched on EndScreen
       return;
     }
@@ -101,6 +108,11 @@ export default function Game() {
 
         setScore((s) => s + grabbed.value);
         setMinaEmotion(grabbed.value > 0 ? "happy" : "sad");
+        if (grabbed.value > 0) {
+          playScoreSound();
+        } else {
+          playLoseSound();
+        }
 
         // تنظیم پیام نمره
         setScoreMessage(

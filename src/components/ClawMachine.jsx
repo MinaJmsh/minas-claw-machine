@@ -159,8 +159,10 @@ export default function ClawMachine({
                     <img
                       src={item.img}
                       alt={item.name}
-                      className="w-full h-full transition-transform duration-300 ease-in-out"
+                      className="transition-transform duration-300 ease-in-out"
                       style={{
+                        width: "90%",
+                        height: "90%",
                         transform: animatedItems[item.id]
                           ? "rotate(5deg) translateY(-2px)"
                           : "rotate(0deg) translateY(0)",
