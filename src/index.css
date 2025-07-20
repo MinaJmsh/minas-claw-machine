@@ -11,7 +11,20 @@ body {
   color: white;
   image-rendering: pixelated;
   cursor: url("assets/cursors/normal.png"), auto;
+
+  /* make items not selectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
+
+/* make imgs not draggablel */
+img {
+  -webkit-user-drag: none;
+  pointer-events: auto;
+}
+
 /* Use hand.png for clickable elements */
 button,
 a,
@@ -22,13 +35,12 @@ label,
 .clickable {
   cursor: url("assets/cursors/hand.png"), pointer;
 }
-/* index.css */
 
+/* this was for drag and drop area */
 .drag-area {
   -webkit-app-region: drag; /* Makes it draggable */
   cursor: url("assets/cursors/normal.png"), auto; /* 👈 Explicitly set custom cursor */
 }
-
 .no-drag {
   -webkit-app-region: no-drag;
 }

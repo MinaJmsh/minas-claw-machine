@@ -19,18 +19,34 @@ const GLASS_HEIGHT = 300;
 const CELL = GLASS_WIDTH / COLS;
 
 function generateGrid() {
-  const grid = [];
-  for (let c = 0; c < COLS; c++) {
-    const count = Math.floor(Math.random() * MAX_ROWS) + 1;
-    const column = [];
-    for (let i = 0; i < count; i++) {
-      const item = allItems[Math.floor(Math.random() * allItems.length)];
-      column.push({ ...item, id: `${c}-${i}-${Date.now()}-${Math.random()}` });
+  let grid = [];
+  let totalItems = 0;
+
+  //at least 15 items
+  while (totalItems < 15) {
+    grid = [];
+    totalItems = 0;
+
+    for (let c = 0; c < COLS; c++) {
+      const count = Math.floor(Math.random() * MAX_ROWS) + 1;
+      const column = [];
+
+      for (let i = 0; i < count; i++) {
+        const item = allItems[Math.floor(Math.random() * allItems.length)];
+        column.push({
+          ...item,
+          id: `${c}-${i}-${Date.now()}-${Math.random()}`,
+        });
+      }
+
+      totalItems += column.length;
+      grid.push(column);
     }
-    grid.push(column);
   }
+
   return grid;
 }
+
 // High score access wrappers
 const getHighScore = () => {
   const stored =
@@ -171,7 +187,7 @@ export default function Game() {
           >
             <span
               className={`transition-all duration-200 ${
-                timeLeft <= 5 ? "text-red-500 animate-blink" : ""
+                timeLeft <= 5 ? "text-pink-400 animate-blink" : ""
               }`}
             >
               Time: {timeLeft}s
