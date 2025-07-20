@@ -169,7 +169,13 @@ export default function Game() {
               textShadow: "2px 2px 2px rgba(0, 0, 0)",
             }}
           >
-            <span>Time: {timeLeft}s</span>
+            <span
+              className={`transition-all duration-200 ${
+                timeLeft <= 5 ? "text-red-500 animate-blink" : ""
+              }`}
+            >
+              Time: {timeLeft}s
+            </span>
             <span>Score: {score}</span>
           </div>
 
