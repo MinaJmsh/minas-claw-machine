@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { items as allItems } from "../utils/itemsData";
-import bg from "../assets/bg.png";
-import bgVideo from "../assets/live-bg-2.mp4";
+import bg from "../assets/backgrounds/bg.png";
+import bgVideo from "../assets/backgrounds/live-bg-2.mp4";
 import WindowControls from "./WindowControls";
 import ClawMachine from "./ClawMachine";
 import Characters from "./Characters";

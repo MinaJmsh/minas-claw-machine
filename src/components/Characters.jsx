@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import minaIdle from "../assets/sprites/mina.png";
-import minaHappy from "../assets/sprites/mina-happy.png";
-import minaCry from "../assets/sprites/mina-cry.png";
-import parsaIdle from "../assets/sprites/parsa.png";
-import parsaHappy from "../assets/sprites/parsa-happy.png";
-import parsaCry from "../assets/sprites/parsa-sad.png";
-import minaBlink from "../assets/sprites/mina-blink.png";
-import parsaBlink from "../assets/sprites/parsa-blink.png";
+import minaIdle from "../assets/characters/mina.png";
+import minaHappy from "../assets/characters/mina-happy.png";
+import minaCry from "../assets/characters/mina-cry.png";
+import parsaIdle from "../assets/characters/parsa.png";
+import parsaHappy from "../assets/characters/parsa-happy.png";
+import parsaCry from "../assets/characters/parsa-sad.png";
+import minaBlink from "../assets/characters/mina-blink.png";
+import parsaBlink from "../assets/characters/parsa-blink.png";
 
 export default function Characters({ minaEmotion }) {
   const [minaBlinking, setMinaBlinking] = useState(false);

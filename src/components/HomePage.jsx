@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import bg from "../assets/bg.png";
-import bgVideo from "../assets/live-bg-reverse.mp4";
-import info from "../assets/info.png";
-import setting from "../assets/setting.png";
+import bg from "../assets/backgrounds/bg.png";
+import bgVideo from "../assets/backgrounds/live-bg-reverse.mp4";
+import info from "../assets/icons/info.png";
+import setting from "../assets/icons/setting.png";
 import GameButton from "./GameButton";
 import SquareGameButton from "./SquareGameButton";
 import ToggleButton from "./ToggleButton";
@@ -48,7 +48,7 @@ export default function HomePage() {
         {/* Content on top */}
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-white text-center">
           <img
-            src={require("../assets/title.gif")}
+            src={require("../assets/backgrounds/title.gif")}
             alt="Mina’s Claw Machine"
             className="mb-6 w-auto h-[100px]" // Adjust height as needed
           />{" "}

@@ -1,4 +1,4 @@
-import clickSound from "../assets/button.mp3";
+import clickSound from "../assets/audio/button.mp3";
 import { useAudio } from "../components/AudioProvider"; // 👈 audio toggle context
 
 export default function useButtonSound() {

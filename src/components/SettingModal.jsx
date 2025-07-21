@@ -1,4 +1,4 @@
-import bg from "../assets/bg.png";
+import bg from "../assets/backgrounds/bg.png";
 import GameButton from "./GameButton";
 import ToggleButton from "./ToggleButton"; // reuse the toggle UI
 import { useAudio } from "./AudioProvider"; // 🔊

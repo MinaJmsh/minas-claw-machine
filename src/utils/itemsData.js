@@ -1,16 +1,16 @@
-import Cactus from "../assets/sprites/Cactus.png";
-import Spider from "../assets/sprites/Spider2.png";
-import Mushroom from "../assets/sprites/Mushroom.png";
-import ToiletPaper from "../assets/sprites/ToiletPaper.png";
-import Chicken from "../assets/sprites/Chicken.png";
-import Sunflower from "../assets/sprites/Sunflower.png";
-import Cat from "../assets/sprites/Cat2.png";
-import Coffee from "../assets/sprites/Coffee2.png";
-import Broccoli from "../assets/sprites/Broccoli.png";
-import TeddyBear from "../assets/sprites/TeddyBear2.png";
-import Duck from "../assets/sprites/duck.png";
-import Yarn from "../assets/sprites/yarn.png";
-import Bowl from "../assets/sprites/bowl.png";
+import Cactus from "../assets/items/Cactus.png";
+import Spider from "../assets/items/Spider.png";
+import Mushroom from "../assets/items/Mushroom.png";
+import ToiletPaper from "../assets/items/ToiletPaper.png";
+import Chicken from "../assets/items/Chicken.png";
+import Sunflower from "../assets/items/Sunflower.png";
+import Cat from "../assets/items/Cat.png";
+import Coffee from "../assets/items/Coffee.png";
+import Broccoli from "../assets/items/Broccoli.png";
+import TeddyBear from "../assets/items/TeddyBear.png";
+import Duck from "../assets/items/duck.png";
+import Yarn from "../assets/items/yarn.png";
+import Bowl from "../assets/items/bowl.png";
 
 export const items = [
   { name: "Cactus", value: -15, img: Cactus },

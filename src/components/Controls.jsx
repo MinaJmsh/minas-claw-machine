@@ -1,8 +1,8 @@
 import SquareGameButton from "./SquareGameButton";
 import RoundGameButton from "./RoundGameButton";
 
-import leftArrow from "../assets/leftarrow.png";
-import rightArrow from "../assets/rightarrow.png";
+import leftArrow from "../assets/icons/leftarrow.png";
+import rightArrow from "../assets/icons/rightarrow.png";
 
 export default function Controls({ moveLeft, moveRight, grab, isGrabbing }) {
   return (

@@ -1,5 +1,5 @@
-import closeIcon from "../assets/close_icon.png";
-import minIcon from "../assets/min_icon.png";
+import closeIcon from "../assets/icons/close_icon.png";
+import minIcon from "../assets/icons/min_icon.png";
 
 export default function WindowControls() {
   return (

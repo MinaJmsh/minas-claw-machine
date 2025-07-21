@@ -1,7 +1,7 @@
-import claw from "../assets/sprites/claw33.png";
-import cable from "../assets/sprites/cable.png";
-import machine from "../assets/machineeee.png";
-import Controls from "./Controls"; // ✅ import it
+import claw from "../assets/machine/claw.png";
+import cable from "../assets/machine/cable.png";
+import machine from "../assets/machine/machine.png";
+import Controls from "./Controls";
 import { useEffect, useState } from "react";
 
 export default function ClawMachine({

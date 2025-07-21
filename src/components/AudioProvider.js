@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import musicFile from "../assets/MissingYou.mp3";
+import musicFile from "../assets/audio/MissingYou.mp3";
 // AudioProvider.js
 const AudioContext = createContext();
 

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import bg from "../assets/bg.png";
+import bg from "../assets/backgrounds/bg.png";
 import WindowControls from "./WindowControls";
-import bgVideo from "../assets/live-bg-reverse.mp4";
+import bgVideo from "../assets/backgrounds/live-bg-reverse.mp4";
 import GameButton from "./GameButton"; // افزودن این
 
 export default function EndScreen() {

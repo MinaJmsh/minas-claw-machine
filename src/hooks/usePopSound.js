@@ -1,4 +1,4 @@
-import clickSound from "../assets/pop.mp3";
+import clickSound from "../assets/audio/pop.mp3";
 import { useAudio } from "../components/AudioProvider"; // 👈 audio toggle context
 
 export default function usePopSound() {
