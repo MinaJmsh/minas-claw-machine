@@ -3,8 +3,17 @@
 @tailwind utilities;
 
 /* Optional: Pixel font for cuteness */
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"); */
+
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("./assets/fonts/PixelifySans-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900; /* Supports full weight range */
+  font-style: normal;
+}
+
 body {
   font-family: "Pixelify Sans", monospace;
   background-color: #111;
