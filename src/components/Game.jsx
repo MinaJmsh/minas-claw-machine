@@ -13,7 +13,7 @@ import useOverSound from "../hooks/useOverSound"; // 🔊
 // 🧮 Constants
 const MAX_ROWS = 3;
 const COLS = 6;
-const GAME_TIME = 10;
+const GAME_TIME = 30;
 const GLASS_WIDTH = 370;
 const GLASS_HEIGHT = 300;
 const CELL = GLASS_WIDTH / COLS;
