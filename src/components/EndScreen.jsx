@@ -68,11 +68,17 @@ export default function EndScreen() {
             High Score: {highScore}
           </p>
 
-          <div className="mt-6">
+          <div className="mt-6 flex gap-4">
+            <GameButton
+              label="play again"
+              onClick={() => navigate("/game")}
+              width={180}
+              height={64}
+            />
             <GameButton
               label="go to menu"
               onClick={() => navigate("/")}
-              width={200}
+              width={180}
               height={64}
             />
           </div>

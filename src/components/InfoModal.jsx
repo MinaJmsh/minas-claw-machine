@@ -1,4 +1,5 @@
 import bg from "../assets/backgrounds/bg.png";
+import CharactersHome from "./CharactersHome";
 import GameButton from "./GameButton";
 
 export default function InfoModal({ onClose }) {
@@ -35,6 +36,7 @@ export default function InfoModal({ onClose }) {
               onClick={onClose}
             />
           </div>
+          <CharactersHome minaEmotion="idle" />
         </div>
       </div>
     </div>
